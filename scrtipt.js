@@ -4,6 +4,7 @@ const addTodoInput = document.querySelector("[data-add-todo-input]");
 const addTodoBtn = document.querySelector('[data-add-todo-btn]');
 const todoContainer = document.querySelector('[data-todo-container]');
 const todoTemplate = document.querySelector('[data-todo-template]');
+const searchTodoInput = document.querySelector('[data-search-todo-input]');
 
 
 let todoList = getTodosIntoLocalStorage() 
