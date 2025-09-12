@@ -71,7 +71,7 @@ const renderTodos = () => {
     todoContainer.innerHTML = '';
 
     if(todoList.length === 0) {
-        todoContainer.innerHTML = "<h3>Нет задач</h3>"
+        todoContainer.innerHTML = "<h3 class='information'>Нет задач</h3>"
     }
 
     todoList.forEach((todo,i) => {

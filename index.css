@@ -140,6 +140,38 @@ body {
     .todo-checkbox:checked~.todo-info {
         text-decoration: line-through;
     }
+
+    .information {
+        text-align: center;
+        font-size: 30px;
+        position: relative;
+        
+        &::before {
+            content: '';
+            height: 2px;
+            width: 130px;
+            background-color: #000;
+            position: absolute;
+            top: 30px;
+            animation: animation 3s ease-in-out infinite;
+        }
+    }
+
+}
+
+@keyframes animation {
+    0% {
+        width: 130px;
+    }
+
+    50% {
+        width: 0px;
+    }
+
+    100% {
+        width: 130px;
+    }
+
 }
 
 
