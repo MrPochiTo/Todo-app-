@@ -1,4 +1,4 @@
-import { saveTodosIntoLocalStorage,getTodosIntoLocalStorage  } from "./utils.js";
+import { saveTodosIntoLocalStorage,getTodosIntoLocalStorage,getDateRepresente  } from "./utils.js";
 
 const addTodoInput = document.querySelector("[data-add-todo-input]");
 const addTodoBtn = document.querySelector('[data-add-todo-btn]');
@@ -6,21 +6,33 @@ const todoContainer = document.querySelector('[data-todo-container]');
 const todoTemplate = document.querySelector('[data-todo-template]');
 const searchTodoInput = document.querySelector('[data-search-todo-input]');
 
+const filterListAndRender = (searchValue) => {
+    filterTodoList = todoList.filter((t) => t.text.toLowerCase().includes(searchValue))
+    renderFilterTodos()
+}
 
 let todoList = getTodosIntoLocalStorage() 
+let filterTodoList = []
 addTodoBtn.addEventListener('click', () => {
     if(addTodoInput.value.trim()) {
         const newTodo = {
             id: Date.now(),
             text: addTodoInput.value.trim(),
             completed: false,
-            createdAt: new Date(),
+            createdAt: getDateRepresente(new Date()),
         }
         todoList.push(newTodo);
         saveTodosIntoLocalStorage(todoList);
         renderTodos()
     }
 })
+
+
+searchTodoInput.addEventListener('input', (e) => {
+    const searchValue = e.target.value.toLowerCase();
+    filterListAndRender(searchValue)
+})
+
 
 const creatTodoLayout = (todo) => {
     const todoElement = document.importNode(todoTemplate.content, true)
@@ -34,7 +46,7 @@ const creatTodoLayout = (todo) => {
 
     const todoDate = todoElement.querySelector('[data-todo-date]');
 
-    todoDate.textContent = todo.createdAt;
+    todoDate.textContent = todo.createdAt
 
     const removeTodoBtn = todoElement.querySelector('[remove-todo-btn]');
 
@@ -51,7 +63,12 @@ const creatTodoLayout = (todo) => {
             return t
         })
         saveTodosIntoLocalStorage(todoList);
-        renderTodos()
+
+        if(searchTodoInput.value.trim()){
+            filterListAndRender(searchTodoInput.value.trim())
+        } else {
+            renderTodos()
+        }
     })
     
     removeTodoBtn.addEventListener('click', () => {
@@ -62,7 +79,11 @@ const creatTodoLayout = (todo) => {
             }
         })
         saveTodosIntoLocalStorage(todoList);
-        renderTodos()
+        if(searchTodoInput.value.trim()){
+            filterListAndRender(searchTodoInput.value.trim())
+        } else {
+            renderTodos()
+        }
     })
     return todoElement
 }
@@ -72,9 +93,23 @@ const renderTodos = () => {
 
     if(todoList.length === 0) {
         todoContainer.innerHTML = "<h3 class='information'>Нет задач</h3>"
+        return;
+    }
+    todoList.forEach((todo,i) => {
+        let todoElement = creatTodoLayout(todo);
+        todoContainer.append(todoElement);
+    });
+}
+
+const renderFilterTodos = () => {
+    todoContainer.innerHTML = '';
+
+    if(filterTodoList.length === 0) {
+        todoContainer.innerHTML = "<h3 class='information'>Задачи не найдены</h3>"
+        return;
     }
 
-    todoList.forEach((todo,i) => {
+    filterTodoList.forEach((todo,i) => {
         let todoElement = creatTodoLayout(todo);
         todoContainer.append(todoElement);
     });

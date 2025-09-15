@@ -6,3 +6,9 @@ export const saveTodosIntoLocalStorage  = (todos)=> {
 }
 
 export const getTodosIntoLocalStorage = () => JSON.parse(localStorage.getItem(TODOS_KEY)) || []
+
+export const getDateRepresente = (date) => Intl.DateTimeFormat("ru-RU", {
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric',
+}).format()
