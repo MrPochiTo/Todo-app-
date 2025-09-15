@@ -13,6 +13,16 @@ const filterListAndRender = (searchValue) => {
 
 let todoList = getTodosIntoLocalStorage() 
 let filterTodoList = []
+
+
+addTodoInput.addEventListener('keydown' ,(e) => {
+    if(e.key === 'Enter') {
+        e.preventDefault();
+        addTodoBtn.click();
+        e.target.value = '';
+    }
+})
+
 addTodoBtn.addEventListener('click', () => {
     if(addTodoInput.value.trim()) {
         const newTodo = {
@@ -21,6 +31,7 @@ addTodoBtn.addEventListener('click', () => {
             completed: false,
             createdAt: getDateRepresente(new Date()),
         }
+        addTodoInput.value = '';
         todoList.push(newTodo);
         saveTodosIntoLocalStorage(todoList);
         renderTodos()
@@ -122,3 +133,4 @@ const removeToDo = (i) => {
 }
 
 renderTodos()
+

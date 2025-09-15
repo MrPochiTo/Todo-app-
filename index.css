@@ -142,18 +142,20 @@ body {
     }
 
     .information {
-        text-align: center;
+        align-self: center;
         font-size: 30px;
         position: relative;
-        
+        text-align: center;
+        width: 300px;
         &::before {
             content: '';
-            height: 2px;
-            width: 130px;
+            display: block;
+            height: 1px;
+            width: 100%;
             background-color: #000;
             position: absolute;
             top: 30px;
-            animation: animation 3s ease-in-out infinite;
+            animation: animation 4s ease-in-out infinite;
         }
     }
 
@@ -161,15 +163,15 @@ body {
 
 @keyframes animation {
     0% {
-        width: 130px;
+        scale: 1;
     }
 
     50% {
-        width: 0px;
+        scale: 0;
     }
 
     100% {
-        width: 130px;
+        scale: 1;
     }
 
 }
