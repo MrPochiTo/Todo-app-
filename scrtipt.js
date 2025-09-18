@@ -1,49 +1,51 @@
 import { saveTodosIntoLocalStorage,getTodosIntoLocalStorage,getDateRepresente  } from "./utils.js";
 
+const filterListAndRender = (searchValue) => {
+    filterTodoList = todoList.filter((t) => t.text.toLowerCase().includes(searchValue))
+    renderFilterTodos()
+}
+
+const renderTodos = () => {
+    todoContainer.innerHTML = '';
+
+    if(todoList.length === 0) {
+        todoContainer.innerHTML = "<h3 class='information'>Нет задач</h3>"
+        return;
+    }
+    todoList.forEach((todo,i) => {
+        let todoElement = creatTodoLayout(todo);
+        todoContainer.append(todoElement);
+    });
+}
+
+const renderFilterTodos = () => {
+    todoContainer.innerHTML = '';
+
+    if(filterTodoList.length === 0) {
+        todoContainer.innerHTML = "<h3 class='information'>Задачи не найдены</h3>"
+        return;
+    }
+
+    filterTodoList.forEach((todo,i) => {
+        let todoElement = creatTodoLayout(todo);
+        todoContainer.append(todoElement);
+    });
+}
+
+const removeToDo = (i) => {
+    todoList.slice(i,1)
+    saveTodosIntoLocalStorage(todoList)
+    renderTodos()
+}
+
 const addTodoInput = document.querySelector("[data-add-todo-input]");
 const addTodoBtn = document.querySelector('[data-add-todo-btn]');
 const todoContainer = document.querySelector('[data-todo-container]');
 const todoTemplate = document.querySelector('[data-todo-template]');
 const searchTodoInput = document.querySelector('[data-search-todo-input]');
 
-const filterListAndRender = (searchValue) => {
-    filterTodoList = todoList.filter((t) => t.text.toLowerCase().includes(searchValue))
-    renderFilterTodos()
-}
-
 let todoList = getTodosIntoLocalStorage() 
 let filterTodoList = []
-
-
-addTodoInput.addEventListener('keydown' ,(e) => {
-    if(e.key === 'Enter') {
-        e.preventDefault();
-        addTodoBtn.click();
-        e.target.value = '';
-    }
-})
-
-addTodoBtn.addEventListener('click', () => {
-    if(addTodoInput.value.trim()) {
-        const newTodo = {
-            id: Date.now(),
-            text: addTodoInput.value.trim(),
-            completed: false,
-            createdAt: getDateRepresente(new Date()),
-        }
-        addTodoInput.value = '';
-        todoList.push(newTodo);
-        saveTodosIntoLocalStorage(todoList);
-        renderTodos()
-    }
-})
-
-
-searchTodoInput.addEventListener('input', (e) => {
-    const searchValue = e.target.value.toLowerCase();
-    filterListAndRender(searchValue)
-})
-
 
 const creatTodoLayout = (todo) => {
     const todoElement = document.importNode(todoTemplate.content, true)
@@ -99,38 +101,37 @@ const creatTodoLayout = (todo) => {
     return todoElement
 }
 
-const renderTodos = () => {
-    todoContainer.innerHTML = '';
-
-    if(todoList.length === 0) {
-        todoContainer.innerHTML = "<h3 class='information'>Нет задач</h3>"
-        return;
+addTodoBtn.addEventListener('click', () => {
+    if(addTodoInput.value.trim()) {
+        const newTodo = {
+            id: Date.now(),
+            text: addTodoInput.value.trim(),
+            completed: false,
+            createdAt: getDateRepresente(new Date()),
+        }
+        addTodoInput.value = '';
+        todoList.push(newTodo);
+        saveTodosIntoLocalStorage(todoList);
+        renderTodos()
     }
-    todoList.forEach((todo,i) => {
-        let todoElement = creatTodoLayout(todo);
-        todoContainer.append(todoElement);
-    });
-}
+})
 
-const renderFilterTodos = () => {
-    todoContainer.innerHTML = '';
 
-    if(filterTodoList.length === 0) {
-        todoContainer.innerHTML = "<h3 class='information'>Задачи не найдены</h3>"
-        return;
+searchTodoInput.addEventListener('input', (e) => {
+    const searchValue = e.target.value.toLowerCase();
+    filterListAndRender(searchValue)
+})
+
+addTodoInput.addEventListener('keydown' ,(e) => {
+    if(e.key === 'Enter') {
+        e.preventDefault();
+        addTodoBtn.click();
+        e.target.value = '';
     }
+})
 
-    filterTodoList.forEach((todo,i) => {
-        let todoElement = creatTodoLayout(todo);
-        todoContainer.append(todoElement);
-    });
-}
 
-const removeToDo = (i) => {
-    todoList.slice(i,1)
-    saveTodosIntoLocalStorage(todoList)
-    renderTodos()
-}
+
 
 renderTodos()
 
