@@ -1,0 +1,32 @@
+{
+  "name": "todo-app-advance",
+  "version": "1.0.0",
+  "description": "",
+  "source": "index.html",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html --dist-dir build --public-url ./ --no-optimize",
+    "sass:watch": "sass --style=expanded --watch style:public"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrPochiTo/Todo-app-.git"
+  },
+  "author": "Dmitriy Pochivalov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MrPochiTo/Todo-app-/issues"
+  },
+  "homepage": "https://github.com/MrPochiTo/Todo-app-#readme",
+  "dependencies": {
+    "parcel": "^2.16.0",
+    "sass": "^1.93.1"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.16.0"
+  }
+}

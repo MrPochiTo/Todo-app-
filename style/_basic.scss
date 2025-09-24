@@ -1,0 +1,19 @@
+@use 'variables' as v;
+
+* {
+    box-sizing: border-box;
+}
+
+p {
+    margin: 0;
+}
+body {
+    margin: 0;
+    background-color: v.$main-color-back;
+}
+
+.container {
+    max-width: 1400px;
+    padding: 0 10px;
+    margin: 0 auto;
+}
