@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   box-sizing: border-box;
 }
@@ -9,6 +10,10 @@ p {
 body {
   margin: 0;
   background-color: #bbbfb9;
+}
+
+.body-black {
+  background-color: #5a5c59;
 }
 
 .container {
@@ -24,13 +29,51 @@ body {
   color: #fff;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
+  padding: 25px;
   font-size: 32px;
 }
 .header h1 {
   text-shadow: 2px 2px 13px #000;
   user-select: none;
+  justify-self: center;
+}
+.header .switch-btn {
+  display: inline-block;
+  border-radius: 15px;
+  border: 1px solid black;
+  width: 72px;
+  height: 38px; /* высота */
+  background: #bfbfbf; /* цвет фона */
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  transition-duration: 300ms; /* анимация */
+}
+.header .switch-btn::after {
+  content: "";
+  border-radius: 15px;
+  height: 32px; /* высота кнопки */
+  width: 32px; /* ширина кнопки */
+  background: #fff; /* цвет кнопки */
+  top: 2px; /* положение кнопки по вертикали относительно основы */
+  left: 3px; /* положение кнопки по горизонтали относительно основы */
+  transition-duration: 300ms; /* анимация */
+  position: absolute;
+  z-index: 1;
+}
+.header .switch-on {
+  background: #118c4e;
+}
+.header .switch-on::after {
+  left: 37px;
+}
+
+.header-black {
+  background-color: #000000;
 }
 
 .add-input-container {

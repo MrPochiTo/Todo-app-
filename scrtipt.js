@@ -1,5 +1,10 @@
 import { saveTodosIntoLocalStorage,getTodosIntoLocalStorage,getDateRepresente  } from "./utils.js";
 
+const switchBackgroundColor = () => {
+    header.classList.toggle('header-black')
+    document.body.classList.toggle('body-black')
+}
+
 const filterListAndRender = (searchValue) => {
     filterTodoList = todoList.filter((t) => t.text.toLowerCase().includes(searchValue))
     renderFilterTodos()
@@ -43,9 +48,16 @@ const addTodoBtn = document.querySelector('[data-add-todo-btn]');
 const todoContainer = document.querySelector('[data-todo-container]');
 const todoTemplate = document.querySelector('[data-todo-template]');
 const searchTodoInput = document.querySelector('[data-search-todo-input]');
+const switchBtn = document.querySelector('[data-header-switch]')
+const header = document.querySelector('[data-header]')
 
 let todoList = getTodosIntoLocalStorage() 
 let filterTodoList = []
+
+switchBtn.addEventListener('click', () => {
+    switchBtn.classList.toggle("switch-on");
+    switchBackgroundColor();
+})
 
 const creatTodoLayout = (todo) => {
     const todoElement = document.importNode(todoTemplate.content, true)

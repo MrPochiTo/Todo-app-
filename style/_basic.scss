@@ -12,6 +12,10 @@ body {
     background-color: v.$main-color-back;
 }
 
+.body-black {
+    background-color: v.$header-color;
+}
+
 .container {
     max-width: 1400px;
     padding: 0 10px;
