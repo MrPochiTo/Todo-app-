@@ -84,14 +84,13 @@ body {
   align-items: stretch;
   width: 100%;
   max-width: 600px;
-  height: 100px;
+  height: 120px;
   margin: 30px auto;
   padding: 0 10px;
   gap: 20px;
 }
 .add-input-container .add-todo-btn {
   font-size: 20px;
-  flex-grow: 1;
   user-select: none;
   border-radius: 5px;
 }
@@ -99,8 +98,12 @@ body {
 .search-input, .add-todo-input {
   border: none;
   font-size: 24px;
-  flex-grow: 3;
+  flex-grow: 1;
   border-radius: 10px;
+}
+
+.search-input {
+  width: 100%;
 }
 
 .todo-list-container {
@@ -204,15 +207,15 @@ body {
     scale: 1;
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 508px) {
   .header {
-    font-size: 20px;
+    font-size: 17px;
   }
   .add-input-container .add-todo-btn {
-    font-size: 12px;
+    font-size: 13px;
   }
   .search-input, .add-todo-input {
-    font-size: 16px;
+    font-size: 13px;
   }
 }
 
