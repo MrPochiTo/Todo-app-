@@ -20,6 +20,7 @@
     }
 
     .switch-btn {
+    flex-shrink: 0;
     display: inline-block;
     border-radius: 15px;
     border: 1px solid black;
@@ -46,7 +47,7 @@
     z-index: 1;
     }
 .switch-on {
-    background: #118c4e;
+    background: #646464;
 }
 .switch-on::after {
     left: 37px;
@@ -204,9 +205,12 @@
 
 
 @media(max-width: 500px) {
+    .header {
+    font-size: 20px;
+    }
     .add-input-container {
         .add-todo-btn {
-            font-size: 16px;
+            font-size: 12px;
         }
     }
 

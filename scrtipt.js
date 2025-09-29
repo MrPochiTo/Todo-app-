@@ -1,4 +1,5 @@
 import { saveTodosIntoLocalStorage,getTodosIntoLocalStorage,getDateRepresente  } from "./utils.js";
+import { SCORE_KEY, TODOS_KEY } from "./utils.js";
 
 const switchBackgroundColor = () => {
     header.classList.toggle('header-black')
@@ -39,7 +40,7 @@ const renderFilterTodos = () => {
 
 const removeToDo = (i) => {
     todoList.slice(i,1)
-    saveTodosIntoLocalStorage(todoList)
+    saveTodosIntoLocalStorage(TODOS_KEY,todoList)
     renderTodos()
 }
 
@@ -51,7 +52,7 @@ const searchTodoInput = document.querySelector('[data-search-todo-input]');
 const switchBtn = document.querySelector('[data-header-switch]')
 const header = document.querySelector('[data-header]')
 
-let todoList = getTodosIntoLocalStorage() 
+let todoList = getTodosIntoLocalStorage(TODOS_KEY) 
 let filterTodoList = []
 
 switchBtn.addEventListener('click', () => {
@@ -87,7 +88,7 @@ const creatTodoLayout = (todo) => {
             }
             return t
         })
-        saveTodosIntoLocalStorage(todoList);
+        saveTodosIntoLocalStorage(TODOS_KEY,todoList);
 
         if(searchTodoInput.value.trim()){
             filterListAndRender(searchTodoInput.value.trim())
@@ -103,7 +104,7 @@ const creatTodoLayout = (todo) => {
                 return t
             }
         })
-        saveTodosIntoLocalStorage(todoList);
+        saveTodosIntoLocalStorage(TODOS_KEY,todoList);
         if(searchTodoInput.value.trim()){
             filterListAndRender(searchTodoInput.value.trim())
         } else {
@@ -123,7 +124,7 @@ addTodoBtn.addEventListener('click', () => {
         }
         addTodoInput.value = '';
         todoList.push(newTodo);
-        saveTodosIntoLocalStorage(todoList);
+        saveTodosIntoLocalStorage(TODOS_KEY,todoList);
         renderTodos()
     }
 })
