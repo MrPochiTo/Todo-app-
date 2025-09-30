@@ -12,6 +12,7 @@
     justify-content:space-between;
     padding: 25px;
     font-size: 32px;
+    transition-duration: 300ms
 
     h1 {
         text-shadow: 2px 2px 13px #000;
@@ -20,41 +21,42 @@
     }
 
     .switch-btn {
-    flex-shrink: 0;
-    display: inline-block;
-    border-radius: 15px;
-    border: 1px solid black;
-    width: 72px; 
-    height: 38px; /* высота */
-    background: #bfbfbf; /* цвет фона */
-    z-index: 0;
-    margin: 0;
-    padding: 0;
-    cursor: pointer;
-    position: relative;
-    transition-duration: 300ms; /* анимация */
+        flex-shrink: 0;
+        display: inline-block;
+        border-radius: 15px;
+        border: 1px solid black;
+        width: 72px; 
+        height: 38px; /* высота */
+        background: #bfbfbf; /* цвет фона */
+        z-index: 0;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+        position: relative;
+        transition-duration: 300ms; /* анимация */
 }
     .switch-btn::after {
-    content: "";
-    border-radius: 15px;
-    height: 32px; /* высота кнопки */
-    width: 32px; /* ширина кнопки */
-    background: #fff; /* цвет кнопки */
-    top: 2px; /* положение кнопки по вертикали относительно основы */
-    left: 3px; /* положение кнопки по горизонтали относительно основы */
-    transition-duration: 300ms; /* анимация */
-    position: absolute;
-    z-index: 1;
+        content: "";
+        border-radius: 15px;
+        height: 32px; /* высота кнопки */
+        width: 32px; /* ширина кнопки */
+        background: #fff; /* цвет кнопки */
+        top: 2px; /* положение кнопки по вертикали относительно основы */
+        left: 3px; /* положение кнопки по горизонтали относительно основы */
+        transition-duration: 300ms; /* анимация */
+        position: absolute;
+        z-index: 1;
     }
-.switch-on {
-    background: #646464;
-}
-.switch-on::after {
-    left: 37px;
-}
+    .switch-on {
+        background: #646464;
+    }
+    .switch-on::after {
+        left: 37px;
+    }
 }
 .header-black {
     background-color: v.$main-color-black;
+    color: v.$main-color-alternative
 }
 .add-input-container {
     display: flex;
@@ -80,6 +82,10 @@
     font-size: 24px;
     flex-grow: 1;
     border-radius: 10px;
+}
+
+.input-alternative {
+    background-color: v.$main-color-alternative;
 }
 .search-input {
     width: 100%;
@@ -207,7 +213,7 @@
 
 @media(max-width: 508px) {
     .header {
-    font-size: 17px;
+        font-size: 17px;
     }
     .add-input-container {
         .add-todo-btn {

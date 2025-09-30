@@ -4,6 +4,9 @@ import { SCORE_KEY, TODOS_KEY } from "./utils.js";
 const switchBackgroundColor = () => {
     header.classList.toggle('header-black')
     document.body.classList.toggle('body-black')
+    addTodoInput.classList.toggle('input-alternative')
+    addTodoBtn.classList.toggle('input-alternative')
+    searchTodoInput.classList.toggle('input-alternative')
 }
 
 const filterListAndRender = (searchValue) => {
@@ -62,20 +65,16 @@ switchBtn.addEventListener('click', () => {
 
 const creatTodoLayout = (todo) => {
     const todoElement = document.importNode(todoTemplate.content, true)
-
     const checkbox = todoElement.querySelector('[data-todo-checkbox')
     checkbox.checked = todo.completed;
 
     const todoText = todoElement.querySelector('[data-todo-text]');
-
     todoText.textContent  = todo.text;
 
     const todoDate = todoElement.querySelector('[data-todo-date]');
-
     todoDate.textContent = todo.createdAt
 
     const removeTodoBtn = todoElement.querySelector('[remove-todo-btn]');
-
     removeTodoBtn.disabled = !todo.completed;
 
 
@@ -142,9 +141,6 @@ addTodoInput.addEventListener('keydown' ,(e) => {
         e.target.value = '';
     }
 })
-
-
-
 
 renderTodos()
 
