@@ -8,16 +8,22 @@
     color: v.$main-color-white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
+    font-size: 32px;
     align-items: center;
     justify-content:space-between;
     padding: 25px;
-    font-size: 32px;
-    transition-duration: 300ms
+    transition-duration: 300ms;
 
-    h1 {
+    .typewrite {
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: .12em solid currentColor;
         text-shadow: 2px 2px 13px #000;
         user-select: none;
         justify-self: center;
+        animation: typing 0.8s steps(8,end) forwards, blinks 2s step-end infinite;
+        width: 0;
     }
 
     .switch-btn {
@@ -210,6 +216,23 @@
 
 }
 
+@keyframes blinks {
+    50% {
+        border-color: transparent;
+    }
+}
+@keyframes typing {
+    to {
+        width: 9ch;
+    }
+}
+@media(prefers-reduced-motion: reduce) {
+    .typewrite {
+        animation: none;
+        width: auto;
+        border-right:none ;
+    }
+}
 
 @media(max-width: 508px) {
     .header {

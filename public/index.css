@@ -30,14 +30,22 @@ body {
   color: #fff;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
+  font-size: 32px;
   align-items: center;
   justify-content: space-between;
   padding: 25px;
-  font-size: 32px;
-  transition-duration: 300ms h1;
-  transition-duration-text-shadow: 2px 2px 13px #000;
-  transition-duration-user-select: none;
-  transition-duration-justify-self: center;
+  transition-duration: 300ms;
+}
+.header .typewrite {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 0.12em solid currentColor;
+  text-shadow: 2px 2px 13px #000;
+  user-select: none;
+  justify-self: center;
+  animation: typing 0.8s steps(8, end) forwards, blinks 2s step-end infinite;
+  width: 0;
 }
 .header .switch-btn {
   flex-shrink: 0;
@@ -210,6 +218,23 @@ body {
   }
   100% {
     scale: 1;
+  }
+}
+@keyframes blinks {
+  50% {
+    border-color: transparent;
+  }
+}
+@keyframes typing {
+  to {
+    width: 9ch;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .typewrite {
+    animation: none;
+    width: auto;
+    border-right: none;
   }
 }
 @media (max-width: 508px) {
