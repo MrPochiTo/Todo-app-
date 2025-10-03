@@ -59,7 +59,7 @@ let todoList = getTodosIntoLocalStorage(TODOS_KEY)
 let filterTodoList = []
 
 switchBtn.addEventListener('click', () => {
-    switchBtn.classList.toggle("switch-on");
+    switchBtn.classList.toggle("switch-btn-on");
     switchBackgroundColor();
 })
 

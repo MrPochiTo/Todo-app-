@@ -40,181 +40,51 @@
         cursor: pointer;
         position: relative;
         transition-duration: 300ms; /* анимация */
-}
-    .switch-btn::after {
-        content: "";
-        border-radius: 15px;
-        height: 32px; /* высота кнопки */
-        width: 32px; /* ширина кнопки */
-        background: #fff; /* цвет кнопки */
-        top: 2px; /* положение кнопки по вертикали относительно основы */
-        left: 3px; /* положение кнопки по горизонтали относительно основы */
-        transition-duration: 300ms; /* анимация */
-        position: absolute;
-        z-index: 1;
+
+        &::after {
+            content: "";
+            border-radius: 15px;
+            width: 32px; /* ширина кнопки */
+            aspect-ratio: 1;
+            background: #fff; /* цвет кнопки */
+            top: 2px; /* положение кнопки по вертикали относительно основы */
+            left: 3px; /* положение кнопки по горизонтали относительно основы */
+            transition-duration: 300ms; /* анимация */
+            position: absolute;
+            z-index: 1;
+        }
+
+        &-on {
+            background: #646464;
+            &::after {
+                left: 37px;
+            }
+        }
+        
     }
-    .switch-on {
-        background: #646464;
-    }
-    .switch-on::after {
-        left: 37px;
+    @media(max-width: 508px) {
+        .typewrite {
+            font-size: 42px;
+        }
+        .switch-btn {
+            width: 60px;
+            height: 30px;
+            &::after {
+                width: 24px;
+            }
+            &-on {
+                &::after {
+                    left: 31px;
+                }
+            }
+        }
     }
 }
 .header-black {
     background-color: v.$main-color-black;
     color: v.$main-color-alternative
 }
-.add-input-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: stretch;
-    width: 100%;
-    max-width: 600px;
-    height: 120px;
-    margin: 30px auto;
-    padding: 0 10px;
-    gap: 20px;
 
-    .add-todo-btn {
-        font-size: 20px;
-        user-select: none;
-        border-radius: 5px;
-    }
-}
-
-.search-input, .add-todo-input {
-    border: none;
-    font-size: 24px;
-    flex-grow: 1;
-    border-radius: 10px;
-}
-
-.input-alternative {
-    background-color: v.$main-color-alternative;
-}
-.search-input {
-    width: 100%;
-}
-.todo-list-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: stretch;
-    padding: 0 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-
-    .todo {
-        position: relative;
-        display: flex;
-        justify-content: flex-start;
-        border: {
-            width: 1px;
-            style: solid;
-            color: v.$main-color-black;
-        }
-        border-radius: 15px;
-        padding: 0 10px;
-        gap: 20px;
-        background-color: v.$task-color;
-        align-items: center;
-        box-shadow: 0 0 15px 3px v.$shadow-color;
-    }
-
-    .todo::before {
-        content: '';
-        position: absolute;
-        height: 33px;
-        background-color: v.$main-color-black;
-        top: 0;
-        right: 40px;
-        width: 1px;
-    }
-
-    .todo-checkbox {
-        height: 20px;
-        width: 20px;
-        accent-color: v.$color-comleted-green;
-        flex-shrink: 0;
-    }
-
-    .todo-info {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        margin: 0;
-
-        .todo-text {
-            font-size: 16px;
-            text-align: justify;
-        }
-
-        .todo-creation-date {
-            font-size: 12px;
-            font-style: italic;
-        }
-    }
-
-
-    .remove-todo-btn {
-        height: 100%;
-        aspect-ratio: 1;
-        background-color: #7e6145;
-        border: 1px solid black;
-        border-radius: 50%;
-        cursor: pointer;
-
-        &:disabled {
-            background-color: #e3be98;
-            cursor: not-allowed;
-        }
-    }
-
-    .todo:has(.todo-checkbox:checked) {
-        background-color: v.$color-comleted-green;
-    }
-
-    .todo-checkbox:checked~.todo-info {
-        text-decoration: line-through;
-    }
-
-    .information {
-        align-self: center;
-        font-size: 30px;
-        position: relative;
-        text-align: center;
-        width: 300px;
-        &::before {
-            content: '';
-            display: block;
-            height: 1px;
-            width: 100%;
-            background-color: #000;
-            position: absolute;
-            top: 30px;
-            animation: animation 4s ease-in-out infinite;
-        }
-    }
-
-}
-
-@keyframes animation {
-    0% {
-        scale: 1;
-    }
-
-    50% {
-        scale: 0;
-    }
-
-    100% {
-        scale: 1;
-    }
-
-}
 
 @keyframes blinks {
     50% {
@@ -224,27 +94,5 @@
 @keyframes typing {
     to {
         width: 9ch;
-    }
-}
-@media(prefers-reduced-motion: reduce) {
-    .typewrite {
-        animation: none;
-        width: auto;
-        border-right:none ;
-    }
-}
-
-@media(max-width: 508px) {
-    .header {
-        font-size: 17px;
-    }
-    .add-input-container {
-        .add-todo-btn {
-            font-size: 13px;
-        }
-    }
-
-    .search-input, .add-todo-input {
-        font-size: 13px;
     }
 }
